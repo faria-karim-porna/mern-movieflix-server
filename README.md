@@ -2,7 +2,7 @@
 
 #### Live Site : https://movieflix-6bd42.web.app/
 
-#### Server Side Github Link : https://github.com/faria-karim-porna/mern-movieflix-client
+#### Client Side Github Link : https://github.com/faria-karim-porna/mern-movieflix-client
 
 ## Overview
 

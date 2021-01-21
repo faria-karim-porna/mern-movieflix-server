@@ -6,15 +6,15 @@
 
 ## Overview
 
-* A full stack seat booking web app for movies.
+*  A full-stack seat booking web app for movies.
 
-* To use the web app, users have to login to the system using their gmail account.
+* To use the web app, users have to log in to the system using their Gmail account.
 
-* There is also logout option in the system.
+* There is also a logout option in the system.
 
-* Users can book multiple seat at a time.
+* Users can book multiple seats at a time.
 
-* Users can select their desirable date and time of the booking.
+* Users can select their desired date and time of the booking.
 
 * If any seats are already booked, other users can not select those seats.
 

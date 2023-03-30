@@ -11,38 +11,38 @@ app.use(cors());
 
 const port = 5000;
 
-app.get("/", (req, res) => {
+app.get("/", (req: any, res: any) => {
   res.send("Hello World!");
 });
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-client.connect().then((res) => {
+client.connect().then((res: any) => {
   const moviesCollection = client.db("movieflix").collection("movies");
   const bookingsCollection = client.db("movieflix").collection("bookings");
 
-  app.post("/addAllData", (req, res) => {
+  app.post("/addAllData", (req: any, res: any) => {
     const allMovies = req.body;
-    moviesCollection.insertMany(allMovies).then((result) => {
+    moviesCollection.insertMany(allMovies).then((result: any) => {
       console.log(result.insertedCount);
       res.send(result.insertedCount);
     });
   });
 
-  app.get("/showMoviesInfo", (req, res) => {
-    moviesCollection.find({}).toArray((err, documents) => {
+  app.get("/showMoviesInfo", (req: any, res: any) => {
+    moviesCollection.find({}).toArray((err: any, documents: any) => {
       res.send(documents);
     });
   });
 
-  app.post("/addBookings", (req, res) => {
+  app.post("/addBookings", (req: any, res: any) => {
     const newBooking = req.body;
-    bookingsCollection.insertOne(newBooking).then((result) => {
+    bookingsCollection.insertOne(newBooking).then((result: any) => {
       console.log(result);
     });
   });
 
-  app.patch("/updateStatus", (req, res) => {
+  app.patch("/updateStatus", (req: any, res: any) => {
     moviesCollection
       .updateOne(
         { id: req.body.id, "seatsArrangement.sid": req.body.sid },
@@ -50,7 +50,7 @@ client.connect().then((res) => {
           $set: { "seatsArrangement.$.status": req.body.status },
         }
       )
-      .then((result) => {
+      .then((result: any) => {
         res.send(result.modifiedCount > 0);
       });
   });

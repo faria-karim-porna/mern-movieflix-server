@@ -34,7 +34,7 @@
 
 * Firebase Hosting
 
-* Heroku
+* Vercel
 
 * Html
 

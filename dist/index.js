@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.qs1yz.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.qs1yz.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-shard-00-00.qs1yz.mongodb.net:27017,cluster0-shard-00-01.qs1yz.mongodb.net:27017,cluster0-shard-00-02.qs1yz.mongodb.net:27017/?ssl=true&replicaSet=atlas-6yqhwu-shard-0&authSource=admin&retryWrites=true&w=majority`;
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -13,7 +14,10 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect().then((res) => {
+client
+    .connect()
+    .then((res) => {
+    console.log(res.status);
     const moviesCollection = client.db("movieflix").collection("movies");
     const bookingsCollection = client.db("movieflix").collection("bookings");
     app.post("/addAllData", (req, res) => {
@@ -43,5 +47,6 @@ client.connect().then((res) => {
             res.send(result.modifiedCount > 0);
         });
     });
-});
+})
+    .catch((err) => console.log("There is Errooor", err));
 app.listen(process.env.PORT || port);

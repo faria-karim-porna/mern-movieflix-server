@@ -35,7 +35,7 @@ client
     app.post("/addBookings", (req, res) => {
         const newBooking = req.body;
         bookingsCollection.insertOne(newBooking).then((result) => {
-            console.log(result);
+            res.status(200).send("Successfully Add Bookings");
         });
     });
     app.patch("/updateStatus", (req, res) => {

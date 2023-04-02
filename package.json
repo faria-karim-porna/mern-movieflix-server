@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon src/index.ts",
     "start-dev": "tsc && nodemon dist/index.js",
-    "prebuild": "rimraf dist",
+    "prebuild": "npm install typescript && rimraf dist",
     "build": "tsc",
     "pre-prod": "rimraf dist && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"

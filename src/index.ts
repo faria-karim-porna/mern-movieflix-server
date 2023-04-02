@@ -42,7 +42,7 @@ client
     app.post("/addBookings", (req: any, res: any) => {
       const newBooking = req.body;
       bookingsCollection.insertOne(newBooking).then((result: any) => {
-        res.status(200).send("Successfully Add Bookings");
+        res.send(result.insertedCount);
       });
     });
 

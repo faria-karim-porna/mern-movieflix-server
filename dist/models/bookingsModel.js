@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const ObjectId = require("mongodb").ObjectId;
 const bookingsSchema = new mongoose_1.Schema({
-    _id: { type: typeof ObjectId, required: true },
+    // _id: { type: typeof ObjectId, required: true },
     email: { type: String, required: true },
     userName: { type: String, required: true },
     movieName: { type: String, required: true },

@@ -15,9 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateSeatStatus = exports.addMultipleMovies = exports.getMoviesInfo = void 0;
 const moviesModel_1 = __importDefault(require("../models/moviesModel"));
 const getMoviesInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("getMoviesInfo");
     try {
         const allMovies = yield moviesModel_1.default.find();
+        console.log(allMovies);
         res.status(200).json({ allMovies });
+        // res.send("ok ok");
     }
     catch (error) {
         throw error;

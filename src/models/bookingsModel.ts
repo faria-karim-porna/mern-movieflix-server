@@ -3,7 +3,7 @@ import { model, Schema } from "mongoose";
 const ObjectId = require("mongodb").ObjectId;
 
 const bookingsSchema: Schema = new Schema({
-  _id: { type: typeof ObjectId, required: true },
+  // _id: { type: typeof ObjectId, required: true },
   email: { type: String, required: true },
   userName: { type: String, required: true },
   movieName: { type: String, required: true },

@@ -5,12 +5,12 @@ import { addBookings } from "../controllers/bookingsController";
 
 const router: Router = Router();
 
-router.get("/addAllData", addMultipleMovies);
+router.post("/addAllData", addMultipleMovies);
 
-router.post("/showMoviesInfo", getMoviesInfo);
+router.get("/showMoviesInfo", getMoviesInfo);
 
-router.put("/updateStatus", updateSeatStatus);
+router.patch("/updateStatus", updateSeatStatus);
 
-router.delete("/addBookings", addBookings);
+router.post("/addBookings", addBookings);
 
 export default router;

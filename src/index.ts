@@ -1,15 +1,20 @@
-import mongoose, { ConnectOptions } from "mongoose";
+
+// const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const MongoClient = require("mongodb").MongoClient;
 require("dotenv").config();
+import mongoose from "mongoose";
+import router from "./routes";
+
 // const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.qs1yz.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-shard-00-00.qs1yz.mongodb.net:27017,cluster0-shard-00-01.qs1yz.mongodb.net:27017,cluster0-shard-00-02.qs1yz.mongodb.net:27017/?ssl=true&replicaSet=atlas-6yqhwu-shard-0&authSource=admin&retryWrites=true&w=majority`;
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(router)
 
 const port = 5000;
 
@@ -69,7 +74,7 @@ const options = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose
   .connect(uri)
   .then(() => console.log("connected"))
-  .catch((error) => {
+  .catch((error: any) => {
     throw error;
   });
 

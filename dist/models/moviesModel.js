@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
+// const mongoose = require('mongoose');
+// const { Schema } = mongoose;
 const ObjectId = require("mongodb").ObjectId;
 const moviesSchema = new mongoose_1.Schema({
     // _id: { type: typeof ObjectId, required: true },

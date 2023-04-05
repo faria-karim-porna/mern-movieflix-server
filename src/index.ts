@@ -1,3 +1,4 @@
+import mongoose, { ConnectOptions } from "mongoose";
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -16,49 +17,60 @@ app.get("/", (req: any, res: any) => {
   res.send("Hello World!");
 });
 
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-client
-  .connect()
-  .then((res: any) => {
-    console.log(res.status);
-    const moviesCollection = client.db("movieflix").collection("movies");
-    const bookingsCollection = client.db("movieflix").collection("bookings");
+// client
+//   .connect()
+//   .then((res: any) => {
+//     console.log(res.status);
+//     const moviesCollection = client.db("movieflix").collection("movies");
+//     const bookingsCollection = client.db("movieflix").collection("bookings");
 
-    app.post("/addAllData", (req: any, res: any) => {
-      const allMovies = req.body;
-      moviesCollection.insertMany(allMovies).then((result: any) => {
-        console.log(result.insertedCount);
-        res.send(result.insertedCount);
-      });
-    });
+//     app.post("/addAllData", (req: any, res: any) => {
+//       const allMovies = req.body;
+//       moviesCollection.insertMany(allMovies).then((result: any) => {
+//         console.log(result.insertedCount);
+//         res.send(result.insertedCount);
+//       });
+//     });
 
-    app.get("/showMoviesInfo", (req: any, res: any) => {
-      moviesCollection.find({}).toArray((err: any, documents: any) => {
-        res.send(documents);
-      });
-    });
+//     app.get("/showMoviesInfo", (req: any, res: any) => {
+//       moviesCollection.find({}).toArray((err: any, documents: any) => {
+//         res.send(documents);
+//       });
+//     });
 
-    app.post("/addBookings", (req: any, res: any) => {
-      const newBooking = req.body;
-      bookingsCollection.insertOne(newBooking).then((result: any) => {
-        res.send(result.insertedCount);
-      });
-    });
+//     app.post("/addBookings", (req: any, res: any) => {
+//       const newBooking = req.body;
+//       bookingsCollection.insertOne(newBooking).then((result: any) => {
+//         res.send(result.insertedCount);
+//       });
+//     });
 
-    app.patch("/updateStatus", (req: any, res: any) => {
-      moviesCollection
-        .updateOne(
-          { id: req.body.id, "seatsArrangement.sid": req.body.sid },
-          {
-            $set: { "seatsArrangement.$.status": req.body.status },
-          }
-        )
-        .then((result: any) => {
-          res.send(result.modifiedCount > 0);
-        });
-    });
-  })
-  .catch((err: any) => console.log("There is Errooor", err));
+//     app.patch("/updateStatus", (req: any, res: any) => {
+//       moviesCollection
+//         .updateOne(
+//           { id: req.body.id, "seatsArrangement.sid": req.body.sid },
+//           {
+//             $set: { "seatsArrangement.$.status": req.body.status },
+//           }
+//         )
+//         .then((result: any) => {
+//           res.send(result.modifiedCount > 0);
+//         });
+//     });
+//   })
+//   .catch((err: any) => console.log("There is Errooor", err));
+
+// const options: ConnectOptions = {};
+// mongoose.set("useFindAndModify", false)
+const options = { useNewUrlParser: true, useUnifiedTopology: true };
+// mongoose.set("useFindAndModify", false);
+mongoose
+  .connect(uri)
+  .then(() => console.log("connected"))
+  .catch((error) => {
+    throw error;
+  });
 
 app.listen(process.env.PORT || port);

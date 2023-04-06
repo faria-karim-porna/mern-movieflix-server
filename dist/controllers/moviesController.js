@@ -11,13 +11,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateSeatStatus = exports.addMultipleMovies = exports.getMoviesInfo = void 0;
 const moviesModel_1 = require("../models/moviesModel");
-// import Movies from "../models/moviesModel";
 const getMoviesInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const allMovies = yield moviesModel_1.Movies.find();
-        console.log(allMovies);
         res.status(200).json({ allMovies });
-        // res.send("ok ok");
     }
     catch (error) {
         throw error;

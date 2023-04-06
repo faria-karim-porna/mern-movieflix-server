@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { addMultipleMovies, getMoviesInfo, updateSeatStatus } from "../controllers/moviesController";
 import { addBookings, getBookingsData } from "../controllers/bookingsController";
-// import { getTodos, addTodo, updateTodo, deleteTodo } from "../controllers/todos"
 
 const router: Router = Router();
 

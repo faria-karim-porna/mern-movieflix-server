@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getBookingsData = exports.addBookings = void 0;
 const bookingsModel_1 = require("../models/bookingsModel");
 const getBookingsData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const bookingsCollection = client.db("movieflix").collection("bookings");
     try {
         const bookings = yield bookingsModel_1.Bookings.find();
         res.status(200).json({ bookings });

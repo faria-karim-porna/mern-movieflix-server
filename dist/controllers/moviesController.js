@@ -16,8 +16,8 @@ const getMoviesInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const allMovies = yield moviesModel_1.Movies.find();
         console.log(allMovies);
-        // res.status(200).json({ allMovies });
-        res.send("ok ok");
+        res.status(200).json({ allMovies });
+        // res.send("ok ok");
     }
     catch (error) {
         throw error;

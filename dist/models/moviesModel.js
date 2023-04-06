@@ -15,4 +15,4 @@ const moviesSchema = new mongoose_1.Schema({
     seatsArrangement: { type: (Array), required: true },
 });
 // export default model<IMovies>("Movies", moviesSchema, "movies");
-exports.Movies = (0, mongoose_1.model)('Movie', moviesSchema);
+exports.Movies = (0, mongoose_1.model)('Movies', moviesSchema);

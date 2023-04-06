@@ -9,8 +9,8 @@ const getMoviesInfo = async (req: Request, res: Response): Promise<void> => {
   try {
     const allMovies: IMovies[] = await Movies.find();
     console.log(allMovies);
-    // res.status(200).json({ allMovies });
-    res.send("ok ok");
+    res.status(200).json({ allMovies });
+    // res.send("ok ok");
   } catch (error) {
     throw error;
   }

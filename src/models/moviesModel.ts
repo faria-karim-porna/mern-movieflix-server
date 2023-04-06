@@ -15,4 +15,4 @@ const moviesSchema: Schema = new Schema({
 });
 
 // export default model<IMovies>("Movies", moviesSchema, "movies");
-export const Movies = model<IMovies>('Movie', moviesSchema);
+export const Movies = model<IMovies>('Movies', moviesSchema);

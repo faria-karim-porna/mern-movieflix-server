@@ -8,19 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateSeatStatus = exports.addMultipleMovies = exports.getMoviesInfo = void 0;
-const moviesModel_1 = __importDefault(require("../models/moviesModel"));
+const moviesModel_1 = require("../models/moviesModel");
+// import Movies from "../models/moviesModel";
 const getMoviesInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("getMoviesInfo");
     try {
-        const allMovies = yield moviesModel_1.default.find();
+        const allMovies = yield moviesModel_1.Movies.find();
         console.log(allMovies);
-        res.status(200).json({ allMovies });
-        // res.send("ok ok");
+        // res.status(200).json({ allMovies });
+        res.send("ok ok");
     }
     catch (error) {
         throw error;
@@ -32,7 +29,7 @@ const addMultipleMovies = (req, res) => __awaiter(void 0, void 0, void 0, functi
         const body = req.body;
         const movies = [];
         for (let index = 0; index < body.length; index++) {
-            const movie = new moviesModel_1.default({
+            const movie = new moviesModel_1.Movies({
                 id: body[index].id,
                 movie: body[index].movie,
                 movieDescription: body[index].movieDescription,
@@ -42,8 +39,8 @@ const addMultipleMovies = (req, res) => __awaiter(void 0, void 0, void 0, functi
             });
             movies.push(movie);
         }
-        const newMovies = yield moviesModel_1.default.insertMany(movies);
-        const allMovies = yield moviesModel_1.default.find();
+        const newMovies = yield moviesModel_1.Movies.insertMany(movies);
+        const allMovies = yield moviesModel_1.Movies.find();
         res.status(201).json({ message: "Multiple Movies Added", movies: newMovies, overallMovies: allMovies });
     }
     catch (error) {
@@ -54,10 +51,10 @@ exports.addMultipleMovies = addMultipleMovies;
 const updateSeatStatus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = req.body;
-        yield moviesModel_1.default.updateOne({ id: req.body.id, "seatsArrangement.sid": body.sid }, {
+        yield moviesModel_1.Movies.updateOne({ id: req.body.id, "seatsArrangement.sid": body.sid }, {
             $set: { "seatsArrangement.$.status": body.status },
         });
-        const allMovies = yield moviesModel_1.default.find();
+        const allMovies = yield moviesModel_1.Movies.find();
         res.status(200).json({
             message: "Seat Status Updated",
             overallMovies: allMovies,

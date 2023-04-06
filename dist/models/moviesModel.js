@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Movies = void 0;
 const mongoose_1 = require("mongoose");
 // const mongoose = require('mongoose');
 // const { Schema } = mongoose;
@@ -13,4 +14,5 @@ const moviesSchema = new mongoose_1.Schema({
     timeAndDate: { type: String, required: true },
     seatsArrangement: { type: (Array), required: true },
 });
-exports.default = (0, mongoose_1.model)("Movies", moviesSchema);
+// export default model<IMovies>("Movies", moviesSchema, "movies");
+exports.Movies = (0, mongoose_1.model)('Movie', moviesSchema);

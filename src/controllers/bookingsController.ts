@@ -1,16 +1,18 @@
 import { Response, Request } from "express";
 // import { ITodo } from "./../../types/todo"
-import Bookings from "../models/bookingsModel";
+// import Bookings from "../models/bookingsModel";
 import { IBookings } from "../types/bookingsType";
+import { Bookings } from "../models/bookingsModel";
 
-// const getTodos = async (req: Request, res: Response): Promise<void> => {
-//   try {
-//     const todos: ITodo[] = await Todo.find()
-//     res.status(200).json({ todos })
-//   } catch (error) {
-//     throw error
-//   }
-// }
+const getBookingsData = async (req: Request, res: Response): Promise<void> => {
+  // const bookingsCollection = client.db("movieflix").collection("bookings");
+  try {
+    const bookings: IBookings[] = await Bookings.find()
+    res.status(200).json({ bookings })
+  } catch (error) {
+    throw error
+  }
+}
 
 const addBookings = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -72,4 +74,4 @@ const addBookings = async (req: Request, res: Response): Promise<void> => {
 //   }
 
 //   export { getTodos, addTodo, updateTodo, deleteTodo }
-export { addBookings };
+export { addBookings, getBookingsData };

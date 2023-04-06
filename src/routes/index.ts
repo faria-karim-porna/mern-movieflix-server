@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { addMultipleMovies, getMoviesInfo, updateSeatStatus } from "../controllers/moviesController";
-import { addBookings } from "../controllers/bookingsController";
+import { addBookings, getBookingsData } from "../controllers/bookingsController";
 // import { getTodos, addTodo, updateTodo, deleteTodo } from "../controllers/todos"
 
 const router: Router = Router();
@@ -12,5 +12,8 @@ router.get("/showMoviesInfo", getMoviesInfo);
 router.patch("/updateStatus", updateSeatStatus);
 
 router.post("/addBookings", addBookings);
+
+router.get("/getBookings", getBookingsData);
+
 
 export default router;

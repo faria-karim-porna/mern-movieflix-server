@@ -1,15 +1,15 @@
 import { IBookings } from "../types/bookingsType";
 import { model, Schema } from "mongoose";
-const ObjectId = require("mongodb").ObjectId;
+// const ObjectId = require("mongodb").ObjectId;
 
 const bookingsSchema: Schema = new Schema({
   // _id: { type: typeof ObjectId, required: true },
-  email: { type: String, required: true },
-  userName: { type: String, required: true },
-  movieName: { type: String, required: true },
-  date: { type: String, required: true },
-  time: { type: String, required: true },
-  seatId: { type: String, required: true },
+  email: { type: String },
+  userName: { type: String },
+  movieName: { type: String },
+  date: { type: String },
+  time: { type: String },
+  seatId: { type: String },
 });
 
-export default model<IBookings>("Bookings", bookingsSchema);
+export const Bookings = model<IBookings>("Bookings", bookingsSchema, "bookings");

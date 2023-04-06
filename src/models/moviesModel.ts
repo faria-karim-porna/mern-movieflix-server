@@ -14,4 +14,5 @@ const moviesSchema: Schema = new Schema({
   seatsArrangement: { type: Array<ISeatArrangement>, required: true },
 });
 
-export default model<IMovies>("Movies", moviesSchema);
+// export default model<IMovies>("Movies", moviesSchema, "movies");
+export const Movies = model<IMovies>('Movie', moviesSchema);

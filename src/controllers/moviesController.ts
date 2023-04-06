@@ -2,15 +2,15 @@ import { Response, Request } from "express";
 // import { ITodo } from "./../../types/todo";
 // import Todo from "../../models/todo";
 import { IMovies } from "../types/moviesType";
-import Movies from "../models/moviesModel";
+import { Movies } from "../models/moviesModel";
+// import Movies from "../models/moviesModel";
 
 const getMoviesInfo = async (req: Request, res: Response): Promise<void> => {
-  console.log("getMoviesInfo");
   try {
     const allMovies: IMovies[] = await Movies.find();
     console.log(allMovies);
-    res.status(200).json({ allMovies });
-    // res.send("ok ok");
+    // res.status(200).json({ allMovies });
+    res.send("ok ok");
   } catch (error) {
     throw error;
   }

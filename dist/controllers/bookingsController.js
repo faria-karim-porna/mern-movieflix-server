@@ -8,25 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addBookings = void 0;
-// import { ITodo } from "./../../types/todo"
-const bookingsModel_1 = __importDefault(require("../models/bookingsModel"));
-// const getTodos = async (req: Request, res: Response): Promise<void> => {
-//   try {
-//     const todos: ITodo[] = await Todo.find()
-//     res.status(200).json({ todos })
-//   } catch (error) {
-//     throw error
-//   }
-// }
+exports.getBookingsData = exports.addBookings = void 0;
+const bookingsModel_1 = require("../models/bookingsModel");
+const getBookingsData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // const bookingsCollection = client.db("movieflix").collection("bookings");
+    try {
+        const bookings = yield bookingsModel_1.Bookings.find();
+        res.status(200).json({ bookings });
+    }
+    catch (error) {
+        throw error;
+    }
+});
+exports.getBookingsData = getBookingsData;
 const addBookings = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = req.body;
-        const booking = new bookingsModel_1.default({
+        const booking = new bookingsModel_1.Bookings({
             email: body.email,
             userName: body.userName,
             movieName: body.movieName,
@@ -35,7 +34,7 @@ const addBookings = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             seatId: body.seatId,
         });
         const newBooking = yield booking.save();
-        const allBookings = yield bookingsModel_1.default.find();
+        const allBookings = yield bookingsModel_1.Bookings.find();
         res.status(201).json({ message: "Bookings added", booking: newBooking, bookings: allBookings });
     }
     catch (error) {

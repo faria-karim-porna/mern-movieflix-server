@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "tsc && node dist/index.js",
     "start-dev": "tsc && nodemon dist/index.js",
-    "prebuild": "rimraf dist",
+    "prebuild": "npm install typescript && rimraf dist",
     "build": "tsc",
     "pre-prod": "rimraf dist && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,9 +19,13 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.3",
+    "mongoose": "^7.0.3",
     "rimraf": "^4.4.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^18.15.11",
     "nodemon": "^2.0.7"
   }

@@ -26,6 +26,10 @@
 
 * React Router
 
+* Redux Toolkit
+
+* TypeScript
+
 * Node.js
 
 * MongoDB
